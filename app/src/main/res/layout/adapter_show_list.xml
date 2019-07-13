@@ -5,6 +5,12 @@
     android:id="@+id/adapter_show_list_root"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/adapter_show_list_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
     <TextView
         android:id="@+id/adapter_show_list_title_tv"
         android:layout_width="match_parent"
