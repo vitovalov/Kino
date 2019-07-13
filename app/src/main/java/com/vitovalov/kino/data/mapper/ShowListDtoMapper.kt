@@ -1,7 +1,7 @@
 package com.vitovalov.kino.data.mapper
 
-import com.vitovalov.kino.data.network.dto.ShowDto
-import com.vitovalov.kino.data.network.dto.ShowListDto
+import com.vitovalov.kino.data.network.model.ShowDto
+import com.vitovalov.kino.data.network.model.ShowListDto
 import com.vitovalov.kino.domain.model.ShowBo
 
 class ShowListDtoMapper {

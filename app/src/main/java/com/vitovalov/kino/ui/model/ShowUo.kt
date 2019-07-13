@@ -1,6 +1,6 @@
-package com.vitovalov.kino.domain.model
+package com.vitovalov.kino.ui.model
 
-data class ShowBo(
+data class ShowUo(
     val backdropPath: String,
     val id: Int,
     val name: String,

@@ -1,4 +1,4 @@
-package com.vitovalov.kino.data.network.dto
+package com.vitovalov.kino.data.network.model
 
 data class ShowListDto(
     val page: Int,

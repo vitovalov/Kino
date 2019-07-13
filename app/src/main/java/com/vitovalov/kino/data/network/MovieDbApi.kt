@@ -1,6 +1,6 @@
 package com.vitovalov.kino.data.network
 
-import com.vitovalov.kino.data.network.dto.ShowListDto
+import com.vitovalov.kino.data.network.model.ShowListDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
