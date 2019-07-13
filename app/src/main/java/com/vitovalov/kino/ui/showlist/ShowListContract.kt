@@ -14,7 +14,7 @@ interface ShowListContract {
 
     interface Presenter {
         fun onViewReady(view: View)
-        fun onBottomReached()
+        fun onPageEnd()
         fun onDestroy()
     }
 }
