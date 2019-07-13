@@ -38,6 +38,7 @@ class ShowListPresenter(
     private fun loadPage() {
         if (!isLoading) {
             isLoading = true
+            view?.showProgress()
             getShowList.invoke(this, GetShowList.Params(page))
             {
                 it.either(::handleError, ::handleSuccess)

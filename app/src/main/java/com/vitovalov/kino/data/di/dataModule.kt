@@ -33,8 +33,9 @@ val dataModule = module {
             .build()
     }
 
-    single {
+    factory {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
+        return@factory interceptor
     }
 }
