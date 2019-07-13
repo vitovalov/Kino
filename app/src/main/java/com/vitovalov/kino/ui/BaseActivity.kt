@@ -7,6 +7,7 @@ import timber.log.Timber
 abstract class BaseActivity : AppCompatActivity() {
 
     protected abstract val rootLayoutId: Int
+    protected abstract val navigationItemId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

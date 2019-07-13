@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.vitovalov.kino.R
+import com.vitovalov.kino.ui.more.MoreActivity
+import com.vitovalov.kino.ui.settings.SettingsActivity
 import com.vitovalov.kino.ui.showlist.ShowListActivity
 
 abstract class BaseNavigationActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -17,6 +19,8 @@ abstract class BaseNavigationActivity : BaseActivity(), BottomNavigationView.OnN
         super.onCreate(savedInstanceState)
         navigationView = findViewById(R.id.activity_home_navigation)
         navigationView.setOnNavigationItemSelectedListener(this)
+
+        onInit(savedInstanceState)
     }
 
     override fun onStart() {
@@ -42,13 +46,13 @@ abstract class BaseNavigationActivity : BaseActivity(), BottomNavigationView.OnN
                     if (this is ShowListActivity) return@postDelayed
                     startActivity(Intent(this, ShowListActivity::class.java))
                 }
-                R.id.navigation_other -> {
-                    if (this is ShowListActivity) return@postDelayed
-                    startActivity(Intent(this, ShowListActivity::class.java))
+                R.id.navigation_more -> {
+                    if (this is MoreActivity) return@postDelayed
+                    startActivity(Intent(this, MoreActivity::class.java))
                 }
                 R.id.navigation_settings -> {
-                    if (this is ShowListActivity) return@postDelayed
-                    startActivity(Intent(this, ShowListActivity::class.java))
+                    if (this is SettingsActivity) return@postDelayed
+                    startActivity(Intent(this, SettingsActivity::class.java))
                 }
             }
             finish()
@@ -57,7 +61,7 @@ abstract class BaseNavigationActivity : BaseActivity(), BottomNavigationView.OnN
     }
 
     private fun updateNavigationBarState() {
-        val actionId = getNavigationMenuItemId()
+        val actionId = navigationItemId
         selectBottomNavigationBarItem(actionId)
     }
 
@@ -65,6 +69,4 @@ abstract class BaseNavigationActivity : BaseActivity(), BottomNavigationView.OnN
         val item = navigationView.menu.findItem(itemId)
         item.isChecked = true
     }
-
-    internal abstract fun getNavigationMenuItemId(): Int
 }

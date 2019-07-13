@@ -59,12 +59,10 @@ class ShowListActivity : BaseNavigationActivity(), ShowListContract.View {
     override fun hideError() {
         progressText.gone()
     }
-    //endregion
 
-    //region BaseNavigationActivity
-    override fun getNavigationMenuItemId(): Int {
-        return R.id.navigation_home
-    }
+    //endregion
+    override val navigationItemId: Int
+        get() = R.id.navigation_home
 
     override val rootLayoutId: Int
         get() = R.layout.activity_show_list
