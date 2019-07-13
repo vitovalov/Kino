@@ -7,18 +7,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vitovalov.kino.R
 import com.vitovalov.kino.extensions.gone
 import com.vitovalov.kino.extensions.visible
+import com.vitovalov.kino.ui.BaseNavigationActivity
 import com.vitovalov.kino.ui.model.ShowUo
 import kotlinx.android.synthetic.main.activity_show_list.*
 import org.koin.android.ext.android.inject
 
-class ShowListActivity : AppCompatActivity(), ShowListContract.View {
+class ShowListActivity : BaseNavigationActivity(), ShowListContract.View {
 
     private val presenter: ShowListContract.Presenter by inject()
     private val adapter: ShowListAdapter = ShowListAdapter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_show_list)
+    override fun onInit(savedInstanceState: Bundle?) {
         initViews()
         presenter.onViewReady(this)
     }
@@ -60,5 +59,14 @@ class ShowListActivity : AppCompatActivity(), ShowListContract.View {
     override fun hideError() {
         progressText.gone()
     }
+    //endregion
+
+    //region BaseNavigationActivity
+    override fun getNavigationMenuItemId(): Int {
+        return R.id.navigation_home
+    }
+
+    override val rootLayoutId: Int
+        get() = R.layout.activity_show_list
     //endregion
 }
