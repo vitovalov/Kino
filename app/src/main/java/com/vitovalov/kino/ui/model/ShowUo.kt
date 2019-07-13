@@ -8,7 +8,7 @@ data class ShowUo(
     val originalName: String,
     val overview: String?,
     val popularity: Double,
-    val posterPath: String,
+    val posterPath: String?,
     val voteAverage: Double,
     val voteCount: Int
 )

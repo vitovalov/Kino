@@ -1,6 +1,5 @@
 package com.vitovalov.kino.ui.showlist_screen
 
-import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +9,7 @@ import com.vitovalov.kino.extensions.load
 import com.vitovalov.kino.ui.model.ShowUo
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_show_list.view.*
+import kotlin.random.Random
 
 class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ShowListViewHolder>() {
 
@@ -27,8 +27,10 @@ class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ShowListViewHolder>
     //endregion
 
     fun addItems(items: List<ShowUo>) {
+        val previousSize = this.items.size
         this.items.addAll(items)
-        notifyDataSetChanged()
+        if (this.items.isEmpty()) notifyDataSetChanged() else
+            notifyItemRangeInserted(previousSize, this.items.size)
     }
 
     inner class ShowListViewHolder constructor(
@@ -37,11 +39,9 @@ class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ShowListViewHolder>
 
         fun bind(item: ShowUo, position: Int) =
             with(itemView) {
-                adapter_show_list_title_tv.text = item.name
+                adapter_show_list_iv.layoutParams.height = Random.nextInt(150, 450)
                 adapter_show_list_iv.load(item.backdropPath)
-                if (position % 2 == 0) {
-                    adapter_show_list_title_tv.setBackgroundColor(Color.WHITE)
-                }
+                adapter_show_list_title_tv.text = item.name + "  ${item.voteAverage}★"
             }
     }
 }

@@ -1,8 +1,8 @@
 package com.vitovalov.kino.ui.showlist_screen
 
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.vitovalov.kino.R
 import com.vitovalov.kino.extensions.gone
 import com.vitovalov.kino.extensions.visible
@@ -22,14 +22,16 @@ class ShowListActivity : BaseNavigationActivity(), ShowListContract.View {
     }
 
     private fun initViews() {
-        val gridLayoutManager =
-            GridLayoutManager(this@ShowListActivity, 1)
+        val recyclerViewLayoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        recyclerViewLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = gridLayoutManager
+        recyclerView.layoutManager = recyclerViewLayoutManager
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if (gridLayoutManager.findLastCompletelyVisibleItemPosition() == gridLayoutManager.itemCount - 1)
+                if (!recyclerView.canScrollVertically(1)) {
                     presenter.onPageEnd()
+                }
                 super.onScrollStateChanged(recyclerView, newState)
             }
         })

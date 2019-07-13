@@ -4,9 +4,13 @@ import com.vitovalov.kino.data.network.NetworkConfig
 import com.vitovalov.kino.data.network.model.ShowDto
 import com.vitovalov.kino.data.network.model.ShowListDto
 import com.vitovalov.kino.domain.model.ShowBo
+import timber.log.Timber
+import kotlin.random.Random
 
 class ShowListDtoMapper {
-    fun toBo(dto: ShowListDto): List<ShowBo> = dto.results.map { toBo(it) }
+    fun toBo(dto: ShowListDto): List<ShowBo> = dto.results.map {
+        toBo(it)
+    }
 
     fun toBo(dto: ShowDto): ShowBo =
         ShowBo(
@@ -23,5 +27,5 @@ class ShowListDtoMapper {
         )
 
     private fun completeBackdrop(url: String) =
-        NetworkConfig.API_BASE_IMAGE + NetworkConfig.API_BACKDROP_IMAGE_SIZE + url
+        NetworkConfig.API_BASE_IMAGE + "original" + url
 }
