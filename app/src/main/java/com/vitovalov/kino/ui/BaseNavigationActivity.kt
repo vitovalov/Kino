@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.vitovalov.kino.R
-import com.vitovalov.kino.ui.more.MoreActivity
-import com.vitovalov.kino.ui.settings.SettingsActivity
-import com.vitovalov.kino.ui.showlist.ShowListActivity
+import com.vitovalov.kino.ui.more_screen.MoreActivity
+import com.vitovalov.kino.ui.settings_screen.SettingsActivity
+import com.vitovalov.kino.ui.showlist_screen.ShowListActivity
 
 abstract class BaseNavigationActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 

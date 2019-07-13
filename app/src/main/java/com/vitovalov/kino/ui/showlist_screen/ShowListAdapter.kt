@@ -1,4 +1,4 @@
-package com.vitovalov.kino.ui.showlist
+package com.vitovalov.kino.ui.showlist_screen
 
 import android.graphics.Color
 import android.view.View

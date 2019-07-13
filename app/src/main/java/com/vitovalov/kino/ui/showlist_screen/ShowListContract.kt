@@ -1,4 +1,4 @@
-package com.vitovalov.kino.ui.showlist
+package com.vitovalov.kino.ui.showlist_screen
 
 import com.vitovalov.kino.ui.model.ShowUo
 
