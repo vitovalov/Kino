@@ -9,6 +9,14 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file("../store/keystore")
+            keyAlias 'key0'
+            storePassword "key0key0"
+            keyPassword "key0key0"
+        }
+    }
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.vitovalov.kino"
@@ -20,7 +28,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
