@@ -6,7 +6,6 @@ import com.vitovalov.kino.domain.Failure
 import com.vitovalov.kino.domain.ShowListRepository
 import com.vitovalov.kino.domain.model.ShowBo
 
-
 class GetShowList(
     private val showListRepository: ShowListRepository
 ) : BaseUseCase<List<ShowBo>, GetShowList.Params>() {
