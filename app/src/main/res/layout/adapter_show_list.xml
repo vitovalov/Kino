@@ -27,12 +27,12 @@
             android:id="@+id/adapter_show_list_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:background="#E4131313"
+            android:paddingTop="@dimen/padding_half"
+            android:paddingBottom="@dimen/padding_half"
+            android:background="@color/adapter_text_background"
             android:gravity="center"
-            android:textColor="#9C9C9C"
-            android:textSize="17sp" />
+            android:textColor="@color/adapter_text_color"
+            android:textSize="@dimen/adapter_text_size" />
 
     </LinearLayout>
 

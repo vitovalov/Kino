@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="@color/black"
     tools:context=".ui.settings_screen.SettingsActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Settings UI"
-        android:textSize="20dp" />
+        android:text="@string/settings_ui"
+        android:textSize="@dimen/text_size_big" />
 
     <include layout="@layout/nav_bar_view" />
 
