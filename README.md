@@ -1,3 +1,6 @@
+![demo gif](art/demo_online.gif)
+
+![demo gif](art/demo_offline.gif)
 
 ## Architecture
 This implementation is based on [MVP + Clean architecture](https://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/) and S.O.L.I.D principles.
