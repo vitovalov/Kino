@@ -17,7 +17,7 @@ class ShowListPresenter(
     private var page: Int = 1
     private var view: ShowListContract.View? = null
 
-    private fun handleSuccess(items: List<ShowBo>) {
+    internal fun handleSuccess(items: List<ShowBo>) {
         view?.hideProgress()
         page++
         val sortedItems = items.sortedBy { it.voteAverage }
@@ -25,7 +25,7 @@ class ShowListPresenter(
         isLoading = false
     }
 
-    private fun handleError(failure: Failure) {
+    internal fun handleError(failure: Failure) {
         if ((failure as Failure.Error).value is UnknownHostException) {
             view?.showOfflineError()
         } else {
