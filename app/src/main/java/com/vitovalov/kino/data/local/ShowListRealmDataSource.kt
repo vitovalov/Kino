@@ -26,5 +26,6 @@ class ShowListRealmDataSource(
                     realm.copyToRealmOrUpdate(it)
                 }
             }
+            realm.close()
         }
 }
