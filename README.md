@@ -1,6 +1,3 @@
-![demo gif](art/demo_online.gif)
-
-![demo gif](art/demo_offline.gif)
 
 ## Architecture
 This implementation is based on [MVP + Clean architecture](https://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/) and S.O.L.I.D principles.
@@ -65,3 +62,7 @@ Each page is ordered by tv show average rating.
 
 This could be improved ordering every new page of items relative to all previous items. This would require to use **DiffUtils** and calling `notifyItemRangeChanged` instead of simply `notifyItemRangeInserted`
 
+## Demo
+![demo gif](art/demo_online.gif)
+
+![demo gif](art/demo_offline.gif)
