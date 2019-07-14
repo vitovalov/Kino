@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Kino</string>
+    <string name="more_ui">More UI</string>
+    <string name="settings_ui">Settings UI</string>
+    <string name="home">Home</string>
+    <string name="more">More</string>
+    <string name="settings">Settings</string>
 </resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_big">20sp</dimen>
+    <dimen name="padding_standard">8dp</dimen>
+    <dimen name="padding_half">4dp</dimen>
+    <dimen name="adapter_text_size">17sp</dimen>
+    <dimen name="bottom_bar_height">70dp</dimen>
+</resources>
