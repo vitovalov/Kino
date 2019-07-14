@@ -63,6 +63,6 @@ Each page is ordered by tv show average rating.
 This could be improved ordering every new page of items relative to all previous items. This would require to use **DiffUtils** and calling `notifyItemRangeChanged` instead of simply `notifyItemRangeInserted`
 
 ## Demo
-![demo gif](art/demo_online.gif)
+<img src="art/demo_online.gif" width="300" height="500" />
 
-![demo gif](art/demo_offline.gif)
+<img src="art/demo_offline.gif" width="300" height="500" />
