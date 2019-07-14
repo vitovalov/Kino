@@ -22,13 +22,13 @@ android {
         applicationId "com.vitovalov.kino"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 20190714
-        versionName "1.0.1"
+        versionCode 20190715
+        versionName "1.0.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
