@@ -10,6 +10,7 @@ interface ShowListContract {
         fun showList(items: List<ShowUo>)
         fun showError()
         fun hideError()
+        fun showOfflineError()
     }
 
     interface Presenter {

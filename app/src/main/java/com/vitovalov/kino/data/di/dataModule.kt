@@ -1,6 +1,9 @@
 package com.vitovalov.kino.data.di
 
 import com.vitovalov.kino.data.ShowListDataSource
+import com.vitovalov.kino.data.local.ShowListLocalDataSource
+import com.vitovalov.kino.data.local.ShowListRealmDataSource
+import com.vitovalov.kino.data.local.mapper.ShowLoMapper
 import com.vitovalov.kino.data.mapper.ShowListDtoMapper
 import com.vitovalov.kino.data.network.MovieDbApi
 import com.vitovalov.kino.data.network.NetworkConfig
@@ -15,6 +18,8 @@ import retrofit2.create
 val dataModule = module {
     single<ShowListDataSource> { ShowListNetworkDataSource(get(), get()) }
     single { ShowListDtoMapper() }
+    single<ShowListLocalDataSource> { ShowListRealmDataSource(get()) }
+    single { ShowLoMapper() }
     single<MovieDbApi> { get<Retrofit>().create() }
 
     single {

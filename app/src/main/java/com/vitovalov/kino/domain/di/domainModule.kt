@@ -7,5 +7,5 @@ import org.koin.dsl.module
 val domainModule = module {
     factory { GetShowList(get()) }
 
-    single { ShowListRepository(get()) }
+    single { ShowListRepository(get(), get()) }
 }

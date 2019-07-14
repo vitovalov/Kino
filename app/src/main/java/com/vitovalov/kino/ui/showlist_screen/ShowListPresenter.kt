@@ -6,6 +6,7 @@ import com.vitovalov.kino.domain.usecase.GetShowList
 import com.vitovalov.kino.ui.BasePresenter
 import com.vitovalov.kino.ui.mapper.ShowListUoMapper
 import kotlinx.coroutines.cancel
+import java.net.UnknownHostException
 
 class ShowListPresenter(
     private val getShowList: GetShowList,
@@ -16,17 +17,22 @@ class ShowListPresenter(
     private var page: Int = 1
     private var view: ShowListContract.View? = null
 
-    private fun handleSuccess(characters: List<ShowBo>) {
+    private fun handleSuccess(items: List<ShowBo>) {
         view?.hideProgress()
         page++
-        view?.showList(showListUoMapper.toUo(characters))
+        val sortedItems = items.sortedBy { it.voteAverage }
+        view?.showList(showListUoMapper.toUo(sortedItems.reversed()))
         isLoading = false
     }
 
     private fun handleError(failure: Failure) {
-        view?.hideProgress()
-        view?.showError()
+        if ((failure as Failure.Error).value is UnknownHostException) {
+            view?.showOfflineError()
+        } else {
+            view?.showError()
+        }
         isLoading = false
+        view?.hideProgress()
     }
 
     //region presenter contract

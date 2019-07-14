@@ -1,15 +1,22 @@
 package com.vitovalov.kino.domain
 
 import com.vitovalov.kino.data.ShowListDataSource
+import com.vitovalov.kino.data.local.ShowListLocalDataSource
 import com.vitovalov.kino.domain.model.ShowBo
 
 class ShowListRepository(
-    private val showListDataSource: ShowListDataSource
+    private val showListDataSource: ShowListDataSource,
+    private val showListLocalDataSource: ShowListLocalDataSource
 ) {
 
     suspend fun getShowList(page: Int): List<ShowBo> {
-        val showList = showListDataSource.getShowList(page)
+        var items = showListLocalDataSource.getShowList(page)
 
-        return showList
+        if (items.isEmpty()) {
+            items = showListDataSource.getShowList(page)
+            showListLocalDataSource.saveShowList(items, page)
+        }
+
+        return items
     }
 }

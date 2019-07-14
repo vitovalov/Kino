@@ -12,13 +12,7 @@ class ShowListUoMapper {
             bo.backdropPath,
             bo.id,
             bo.name,
-            bo.originCountry,
-            bo.originalName,
-            bo.overview,
-            bo.popularity,
-            bo.posterPath,
-            bo.voteAverage,
-            bo.voteCount
+            bo.voteAverage
         )
     }
 }

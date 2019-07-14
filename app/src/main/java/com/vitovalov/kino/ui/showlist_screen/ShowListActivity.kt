@@ -1,6 +1,7 @@
 package com.vitovalov.kino.ui.showlist_screen
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.vitovalov.kino.R
@@ -61,7 +62,12 @@ class ShowListActivity : BaseNavigationActivity(), ShowListContract.View {
         progressText.gone()
     }
 
-    //endregion
+    override fun showOfflineError() {
+        Toast.makeText(this, "Unable to load content - No network connection.", Toast.LENGTH_SHORT).show()
+    }
+    //endregion view contract
+
+    //region BaseNavigationActivity
     override val navigationItemId: Int
         get() = R.id.navigation_home
 

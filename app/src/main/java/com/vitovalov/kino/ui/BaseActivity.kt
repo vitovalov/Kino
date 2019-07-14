@@ -13,6 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         super.setContentView(rootLayoutId)
     }
+
     protected fun finalize() {
         Timber.d("Finishing activity %s", this)
     }

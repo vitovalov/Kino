@@ -4,8 +4,6 @@ import com.vitovalov.kino.data.network.NetworkConfig
 import com.vitovalov.kino.data.network.model.ShowDto
 import com.vitovalov.kino.data.network.model.ShowListDto
 import com.vitovalov.kino.domain.model.ShowBo
-import timber.log.Timber
-import kotlin.random.Random
 
 class ShowListDtoMapper {
     fun toBo(dto: ShowListDto): List<ShowBo> = dto.results.map {
@@ -17,13 +15,7 @@ class ShowListDtoMapper {
             completeBackdrop(dto.backdrop_path),
             dto.id,
             dto.name,
-            dto.origin_country,
-            dto.original_name,
-            dto.overview,
-            dto.popularity,
-            dto.poster_path,
-            dto.vote_average,
-            dto.vote_count
+            dto.vote_average
         )
 
     private fun completeBackdrop(url: String) =
