@@ -1,6 +1,7 @@
 package com.vitovalov.kino.ui.showlist_screen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,8 +67,9 @@ class ShowListFragment : Fragment(), ShowListContract.View {
     }
 
     override fun showError() {
-        progressText.visible()
-        progressText.text = getString(R.string.generic_error)
+        recyclerView.gone()
+        errorText.visible()
+        errorText.text = getString(R.string.generic_error)
     }
 
     override fun hideError() {
