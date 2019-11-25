@@ -23,8 +23,9 @@ class ShowListActivity : BaseNavigationActivity(), ShowListContract.View {
     }
 
     private fun initViews() {
+        val gridColumns = 2
         val recyclerViewLayoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            StaggeredGridLayoutManager(gridColumns, StaggeredGridLayoutManager.VERTICAL)
         recyclerViewLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
         recyclerView.adapter = adapter
         recyclerView.layoutManager = recyclerViewLayoutManager
@@ -41,7 +42,7 @@ class ShowListActivity : BaseNavigationActivity(), ShowListContract.View {
     //region view contract
     override fun showProgress() {
         progressText.visible()
-        progressText.text = "Loading..."
+        progressText.text = getString(R.string.generic_loading)
     }
 
     override fun hideProgress() {
@@ -55,7 +56,7 @@ class ShowListActivity : BaseNavigationActivity(), ShowListContract.View {
 
     override fun showError() {
         progressText.visible()
-        progressText.text = "Error"
+        progressText.text = getString(R.string.generic_error)
     }
 
     override fun hideError() {
@@ -63,7 +64,7 @@ class ShowListActivity : BaseNavigationActivity(), ShowListContract.View {
     }
 
     override fun showOfflineError() {
-        Toast.makeText(this, "Unable to load content - No network connection.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.errors_no_network), Toast.LENGTH_SHORT).show()
     }
     //endregion view contract
 

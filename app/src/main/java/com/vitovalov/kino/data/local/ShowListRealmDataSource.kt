@@ -13,7 +13,7 @@ class ShowListRealmDataSource(
 
     override suspend fun getShowList(page: Int): List<ShowBo> {
         val realm: Realm = Realm.getDefaultInstance()
-        val items = realm.where(ShowLo::class.java).equalTo("page", page).findAll().toList()
+        val items = realm.where(ShowLo::class.java).equalTo(ShowLo.Fields.page.name, page).findAll().toList()
         return showLoMapper.toBo(items)
     }
 

@@ -11,7 +11,7 @@ class ShowLoMapper {
         ShowBo(
             lo.backdropPath,
             lo.id,
-            lo.name,
+            lo.title,
             lo.voteAverage
         )
 
