@@ -14,9 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.settings_screen.SettingsActivity" />
-        <activity android:name=".ui.more_screen.MoreActivity" />
-        <activity android:name=".ui.showlist_screen.ShowListActivity">
+        <activity android:name=".ui.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
