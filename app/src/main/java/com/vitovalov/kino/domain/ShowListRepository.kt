@@ -10,13 +10,24 @@ class ShowListRepository(
 ) {
 
     suspend fun getShowList(page: Int): List<ShowBo> {
-        var items = showListLocalDataSource.getShowList(page)
-
+        var items: List<ShowBo>
+        items = try {
+            showListLocalDataSource.getShowList(page)
+        } catch (e: Exception) {
+            loadRemoteItemsAndCache(page)
+        }
         if (items.isEmpty()) {
-            items = showListDataSource.getShowList(page)
-            showListLocalDataSource.saveShowList(items, page)
+            items = loadRemoteItemsAndCache(page)
         }
 
+        return items
+    }
+
+    private suspend fun loadRemoteItemsAndCache(
+        page: Int
+    ): List<ShowBo> {
+        val items: List<ShowBo> = showListDataSource.getShowList(page)
+        showListLocalDataSource.saveShowList(items, page)
         return items
     }
 }

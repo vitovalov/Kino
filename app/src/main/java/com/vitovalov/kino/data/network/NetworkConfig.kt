@@ -8,4 +8,5 @@ object NetworkConfig {
     val API_LANG: String
         get() = Locale.getDefault().language
     const val API_BASE_IMAGE = "https://image.tmdb.org/t/p/"
+    const val API_ORIGINAL_IMAGE = "original"
 }

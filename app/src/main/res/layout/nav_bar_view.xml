@@ -15,4 +15,4 @@
     app:menu="@menu/bottom_nav_bar"
     tools:layout_height="@dimen/bottom_bar_height"
     tools:layout_width="match_parent"
-    tools:showIn="@layout/activity_show_list" />
+    tools:showIn="@layout/fragment_show_list" />

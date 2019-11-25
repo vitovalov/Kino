@@ -19,5 +19,5 @@ class ShowListDtoMapper {
         )
 
     private fun completeBackdrop(url: String) =
-        NetworkConfig.API_BASE_IMAGE + "original" + url
+        NetworkConfig.API_BASE_IMAGE + NetworkConfig.API_ORIGINAL_IMAGE + url
 }

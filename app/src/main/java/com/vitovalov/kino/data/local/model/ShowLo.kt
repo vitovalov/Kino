@@ -8,6 +8,14 @@ open class ShowLo(
     var id: Int = 0,
     var page: Int = 0,
     var backdropPath: String = "",
-    var name: String = "",
+    var title: String = "",
     var voteAverage: Double = 0.0
-) : RealmObject()
+) : RealmObject() {
+    enum class Fields {
+        id,
+        page,
+        backdropPath,
+        title,
+        voteAverage,
+    }
+}

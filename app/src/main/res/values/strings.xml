@@ -5,4 +5,7 @@
     <string name="home">Home</string>
     <string name="more">More</string>
     <string name="settings">Settings</string>
+    <string name="generic_loading">Loading…</string>
+    <string name="generic_error">Error</string>
+    <string name="errors_no_network">Unable to load content - No network connection.</string>
 </resources>

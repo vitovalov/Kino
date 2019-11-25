@@ -39,7 +39,6 @@ class ShowListPresenterTest {
 
     @Test
     fun `use case is executed when view is ready`() {
-
         verify(useCase).invoke(any(), any(), any())
     }
 
