@@ -1,10 +1,12 @@
 package com.vitovalov.kino.ui.showlist_screen
 
 import com.vitovalov.kino.domain.Failure
+import com.vitovalov.kino.domain.Result
 import com.vitovalov.kino.domain.model.ShowBo
 import com.vitovalov.kino.domain.usecase.GetShowList
 import com.vitovalov.kino.ui.BasePresenter
 import com.vitovalov.kino.ui.mapper.ShowListUoMapper
+import com.vitovalov.kino.ui.model.ShowUo
 import kotlinx.coroutines.cancel
 import java.net.UnknownHostException
 
@@ -20,12 +22,19 @@ class ShowListPresenter(
     internal fun handleSuccess(items: List<ShowBo>) {
         view?.hideProgress()
         page++
-        val sortedItems = items.sortedBy { it.voteAverage }
-        view?.showList(showListUoMapper.toUo(sortedItems.reversed()))
+        view?.showList(prepareListForUi(items))
         isLoading = false
     }
 
-    internal fun handleError(failure: Failure) {
+    private fun prepareListForUi(items: List<ShowBo>): List<ShowUo> {
+        val sortedItems = items.sortedBy { it.voteAverage }
+        val uoList = showListUoMapper.toUo(sortedItems.reversed())
+        return uoList
+    }
+
+    internal fun handleError(failure: Failure?, data: List<ShowBo>?) {
+        data?.let { view?.showList(prepareListForUi(it)) }
+
         if ((failure as Failure.Error).value is UnknownHostException) {
             view?.showOfflineError()
         } else {
@@ -47,7 +56,10 @@ class ShowListPresenter(
             view?.showProgress()
             getShowList.invoke(this, GetShowList.Params(page))
             {
-                it.fold(::handleError, ::handleSuccess)
+                when (it.status) {
+                    Result.Status.SUCCESS -> handleSuccess(it.data!!)
+                    Result.Status.ERROR -> handleError(it.error, it.data)
+                }
             }
         }
     }

@@ -1,14 +1,13 @@
 package com.vitovalov.kino.ui.showlist_screen
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.vitovalov.kino.R
 import com.vitovalov.kino.extensions.gone
 import com.vitovalov.kino.extensions.visible
@@ -67,9 +66,7 @@ class ShowListFragment : Fragment(), ShowListContract.View {
     }
 
     override fun showError() {
-        recyclerView.gone()
-        errorText.visible()
-        errorText.text = getString(R.string.generic_error)
+        Snackbar.make(container, getString(R.string.generic_error), Snackbar.LENGTH_LONG).show()
     }
 
     override fun hideError() {
@@ -77,7 +74,7 @@ class ShowListFragment : Fragment(), ShowListContract.View {
     }
 
     override fun showOfflineError() {
-        Toast.makeText(activity, getString(R.string.errors_no_network), Toast.LENGTH_SHORT).show()
+        Snackbar.make(container, getString(R.string.errors_no_network), Snackbar.LENGTH_LONG).show()
     }
     //endregion view contract
 }

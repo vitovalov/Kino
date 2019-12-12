@@ -9,25 +9,29 @@ class ShowListRepository(
     private val showListLocalDataSource: ShowListLocalDataSource
 ) {
 
-    suspend fun getShowList(page: Int): List<ShowBo> {
+    suspend fun getShowList(page: Int): Result<List<ShowBo>> {
         var items: List<ShowBo>
-        items = try {
-            showListLocalDataSource.getShowList(page)
+
+        try {
+            println("trying to load showList from remote ds")
+            items = showListDataSource.getShowList(page)
+
+            if (items.isNotEmpty()) {
+                println("saving new data [${items.size}] to local db")
+                showListLocalDataSource.saveShowList(items, page)
+            }
         } catch (e: Exception) {
-            loadRemoteItemsAndCache(page)
-        }
-        if (items.isEmpty()) {
-            items = loadRemoteItemsAndCache(page)
+            println("first catch $e")
+            return try {
+                println("trying to load showList from local ds")
+                items = showListLocalDataSource.getShowList(page)
+                Result.error(Failure.Error(e), items)
+            } catch (e: Exception) {
+                println("exception $e during local ds showList retrieval")
+                Result.error(Failure.Error(e))
+            }
         }
 
-        return items
-    }
-
-    private suspend fun loadRemoteItemsAndCache(
-        page: Int
-    ): List<ShowBo> {
-        val items: List<ShowBo> = showListDataSource.getShowList(page)
-        showListLocalDataSource.saveShowList(items, page)
-        return items
+        return Result.success(items)
     }
 }
