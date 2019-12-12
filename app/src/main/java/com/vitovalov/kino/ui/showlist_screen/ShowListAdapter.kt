@@ -13,24 +13,26 @@ import kotlin.random.Random
 
 class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ShowListViewHolder>() {
 
-    private var items: MutableList<Show> = mutableListOf()
+    private var shows: MutableList<Show> = mutableListOf()
 
     //region adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowListViewHolder =
         ShowListViewHolder(parent.inflate(R.layout.adapter_show_list))
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = shows.size
 
     override fun onBindViewHolder(holder: ShowListViewHolder, position: Int) =
-        holder.bind(items[position], position)
+        holder.bind(shows[position], position)
 
     //endregion
 
-    fun addItems(items: List<Show>) {
-        val previousSize = this.items.size
-        this.items.addAll(items)
-        if (this.items.isEmpty()) notifyDataSetChanged() else
-            notifyItemRangeInserted(previousSize, this.items.size)
+    fun addItems(newShows: List<Show>) {
+        val previousSize = this.shows.size
+        if (!this.shows.containsAll(newShows)) {
+            this.shows.addAll(newShows)
+        }
+        if (this.shows.isEmpty()) notifyDataSetChanged()
+        notifyItemRangeInserted(previousSize, this.shows.size)
     }
 
     inner class ShowListViewHolder constructor(
