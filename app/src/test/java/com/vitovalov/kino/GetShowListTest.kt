@@ -4,6 +4,7 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import com.vitovalov.kino.domain.Result
 import com.vitovalov.kino.domain.ShowListRepository
 import com.vitovalov.kino.domain.model.Show
 import com.vitovalov.kino.domain.usecase.GetShowList
@@ -34,10 +35,12 @@ class GetShowListTest {
         }
 
         runBlocking {
-            whenever(repository.getShowList(ArgumentMatchers.anyInt())).thenReturn(givenFakeList())
-            getShowList.invoke(CoroutineScope(Job()), GetShowList.Params(2)) {
-                it.fold(any(), ::handleSuccess)
-            }
+            whenever(repository.getShowList(ArgumentMatchers.anyInt())).thenReturn(
+                Result.success(
+                    givenFakeList()
+                )
+            )
+            getShowList.invoke(CoroutineScope(Job()), GetShowList.Params(2))
             verify(repository).getShowList(any())
         }
     }

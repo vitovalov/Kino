@@ -6,7 +6,6 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.vitovalov.kino.domain.model.Show
 import com.vitovalov.kino.domain.usecase.GetShowList
-import com.vitovalov.kino.ui.mapper.ShowListUoMapper
 import com.vitovalov.kino.ui.showlist_screen.ShowListContract
 import com.vitovalov.kino.ui.showlist_screen.ShowListPresenter
 import org.junit.Before
@@ -17,7 +16,6 @@ class ShowListPresenterTest {
 
     private val view: ShowListContract.View = mock()
     private val useCase: GetShowList = mock()
-    private val mapper: ShowListUoMapper = mock()
 
     private val presenter by lazy {
         ShowListPresenter(
@@ -56,25 +54,21 @@ class ShowListPresenterTest {
 
     @Test
     fun `after presenter success load, same results are received by view`() {
-        given { mapper.toUo(givenShowList()) }.willReturn(givenShowListUo())
-
         presenter.handleSuccess(givenShowList())
-
-        verify(mapper).toUo(givenShowList())
 
         verify(view).showList(givenShowListUo())
     }
 
     @Test
     fun `after presenter error load, view shows error`() {
-        presenter.handleError(com.vitovalov.kino.domain.Failure.Error(IllegalArgumentException()))
+        presenter.handleError(com.vitovalov.kino.domain.Failure.Error(IllegalArgumentException()), null)
 
         verify(view).showError()
     }
 
     @Test
     fun `after presenter error load, if offline, view shows error offline`() {
-        presenter.handleError(com.vitovalov.kino.domain.Failure.Error(UnknownHostException()))
+        presenter.handleError(com.vitovalov.kino.domain.Failure.Error(UnknownHostException()), null)
 
         verify(view).showOfflineError()
     }
