@@ -47,7 +47,7 @@ class ShowListPresenter(
             view?.showProgress()
             getShowList.invoke(this, GetShowList.Params(page))
             {
-                it.either(::handleError, ::handleSuccess)
+                it.fold(::handleError, ::handleSuccess)
             }
         }
     }

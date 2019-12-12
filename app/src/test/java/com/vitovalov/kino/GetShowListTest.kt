@@ -36,7 +36,7 @@ class GetShowListTest {
         runBlocking {
             whenever(repository.getShowList(ArgumentMatchers.anyInt())).thenReturn(givenFakeList())
             getShowList.invoke(CoroutineScope(Job()), GetShowList.Params(2)) {
-                it.either(any(), ::handleSuccess)
+                it.fold(any(), ::handleSuccess)
             }
             verify(repository).getShowList(any())
         }
