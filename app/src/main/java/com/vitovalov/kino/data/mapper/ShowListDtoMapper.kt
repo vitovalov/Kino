@@ -3,15 +3,15 @@ package com.vitovalov.kino.data.mapper
 import com.vitovalov.kino.data.network.NetworkConfig
 import com.vitovalov.kino.data.network.model.ShowDto
 import com.vitovalov.kino.data.network.model.ShowListDto
-import com.vitovalov.kino.domain.model.ShowBo
+import com.vitovalov.kino.domain.model.Show
 
 class ShowListDtoMapper {
-    fun toBo(dto: ShowListDto): List<ShowBo> = dto.results.map {
+    fun toBo(dto: ShowListDto): List<Show> = dto.results.map {
         toBo(it)
     }
 
-    fun toBo(dto: ShowDto): ShowBo =
-        ShowBo(
+    fun toBo(dto: ShowDto): Show =
+        Show(
             completeBackdrop(dto.backdrop_path),
             dto.id,
             dto.name,

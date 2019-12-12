@@ -5,7 +5,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.vitovalov.kino.domain.ShowListRepository
-import com.vitovalov.kino.domain.model.ShowBo
+import com.vitovalov.kino.domain.model.Show
 import com.vitovalov.kino.domain.usecase.GetShowList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -29,7 +29,7 @@ class GetShowListTest {
     @Test
     fun `when getShowList is executed, repository getShowList is called`() {
 
-        fun handleSuccess(items: List<ShowBo>) {
+        fun handleSuccess(items: List<Show>) {
             Assert.assertEquals(givenFakeList(), items)
         }
 
@@ -42,5 +42,5 @@ class GetShowListTest {
         }
     }
 
-    private fun givenFakeList() = listOf(ShowBo("test", 0, "test", 0.0))
+    private fun givenFakeList() = listOf(Show("test", 0, "test", 0.0))
 }

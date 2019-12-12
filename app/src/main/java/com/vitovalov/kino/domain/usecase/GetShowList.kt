@@ -2,11 +2,11 @@ package com.vitovalov.kino.domain.usecase
 
 import com.vitovalov.kino.domain.BaseUseCase
 import com.vitovalov.kino.domain.ShowListRepository
-import com.vitovalov.kino.domain.model.ShowBo
+import com.vitovalov.kino.domain.model.Show
 
 class GetShowList(
     private val showListRepository: ShowListRepository
-) : BaseUseCase<List<ShowBo>, GetShowList.Params>() {
+) : BaseUseCase<List<Show>, GetShowList.Params>() {
 
     override suspend fun run(params: Params) = showListRepository.getShowList(params.page)
 

@@ -2,37 +2,33 @@ package com.vitovalov.kino.ui.showlist_screen
 
 import com.vitovalov.kino.domain.Failure
 import com.vitovalov.kino.domain.Result
-import com.vitovalov.kino.domain.model.ShowBo
+import com.vitovalov.kino.domain.model.Show
 import com.vitovalov.kino.domain.usecase.GetShowList
 import com.vitovalov.kino.ui.BasePresenter
-import com.vitovalov.kino.ui.mapper.ShowListUoMapper
-import com.vitovalov.kino.ui.model.ShowUo
 import kotlinx.coroutines.cancel
 import java.net.UnknownHostException
 
 class ShowListPresenter(
-    private val getShowList: GetShowList,
-    private val showListUoMapper: ShowListUoMapper
+    private val getShowList: GetShowList
 ) : BasePresenter(), ShowListContract.Presenter {
 
     private var isLoading: Boolean = false
     private var page: Int = 1
     private var view: ShowListContract.View? = null
 
-    internal fun handleSuccess(items: List<ShowBo>) {
+    internal fun handleSuccess(items: List<Show>) {
         view?.hideProgress()
         page++
         view?.showList(prepareListForUi(items))
         isLoading = false
     }
 
-    private fun prepareListForUi(items: List<ShowBo>): List<ShowUo> {
+    private fun prepareListForUi(items: List<Show>): List<Show> {
         val sortedItems = items.sortedBy { it.voteAverage }
-        val uoList = showListUoMapper.toUo(sortedItems.reversed())
-        return uoList
+        return sortedItems.reversed()
     }
 
-    internal fun handleError(failure: Failure?, data: List<ShowBo>?) {
+    internal fun handleError(failure: Failure?, data: List<Show>?) {
         data?.let { view?.showList(prepareListForUi(it)) }
 
         if ((failure as Failure.Error).value is UnknownHostException) {

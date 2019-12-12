@@ -1,13 +1,13 @@
 package com.vitovalov.kino.ui.showlist_screen
 
-import com.vitovalov.kino.ui.model.ShowUo
+import com.vitovalov.kino.domain.model.Show
 
 interface ShowListContract {
 
     interface View {
         fun showProgress()
         fun hideProgress()
-        fun showList(items: List<ShowUo>)
+        fun showList(items: List<Show>)
         fun showError()
         fun hideError()
         fun showOfflineError()

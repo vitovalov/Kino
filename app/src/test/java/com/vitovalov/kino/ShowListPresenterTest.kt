@@ -4,10 +4,9 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.given
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import com.vitovalov.kino.domain.model.ShowBo
+import com.vitovalov.kino.domain.model.Show
 import com.vitovalov.kino.domain.usecase.GetShowList
 import com.vitovalov.kino.ui.mapper.ShowListUoMapper
-import com.vitovalov.kino.ui.model.ShowUo
 import com.vitovalov.kino.ui.showlist_screen.ShowListContract
 import com.vitovalov.kino.ui.showlist_screen.ShowListPresenter
 import org.junit.Before
@@ -22,8 +21,7 @@ class ShowListPresenterTest {
 
     private val presenter by lazy {
         ShowListPresenter(
-            useCase,
-            mapper
+            useCase
         )
     }
 
@@ -81,11 +79,11 @@ class ShowListPresenterTest {
         verify(view).showOfflineError()
     }
 
-    private fun givenShowList(): List<ShowBo> {
-        return listOf(ShowBo("", 3, "", 2.0))
+    private fun givenShowList(): List<Show> {
+        return listOf(Show("", 3, "", 2.0))
     }
 
-    private fun givenShowListUo(): List<ShowUo> {
-        return listOf(ShowUo("", 3, "", 2.0))
+    private fun givenShowListUo(): List<Show> {
+        return listOf(Show("", 3, "", 2.0))
     }
 }

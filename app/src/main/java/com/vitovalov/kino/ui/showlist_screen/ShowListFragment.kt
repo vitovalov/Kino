@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.vitovalov.kino.R
 import com.vitovalov.kino.extensions.gone
 import com.vitovalov.kino.extensions.visible
-import com.vitovalov.kino.ui.model.ShowUo
+import com.vitovalov.kino.domain.model.Show
 import kotlinx.android.synthetic.main.fragment_show_list.*
 import org.koin.android.ext.android.inject
 
@@ -60,7 +60,7 @@ class ShowListFragment : Fragment(), ShowListContract.View {
         progressText.gone()
     }
 
-    override fun showList(items: List<ShowUo>) {
+    override fun showList(items: List<Show>) {
         recyclerView.visible()
         adapter.addItems(items)
     }

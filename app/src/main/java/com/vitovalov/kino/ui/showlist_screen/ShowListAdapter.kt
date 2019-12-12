@@ -4,16 +4,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vitovalov.kino.R
+import com.vitovalov.kino.domain.model.Show
 import com.vitovalov.kino.extensions.inflate
 import com.vitovalov.kino.extensions.load
-import com.vitovalov.kino.ui.model.ShowUo
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_show_list.view.*
 import kotlin.random.Random
 
 class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ShowListViewHolder>() {
 
-    private var items: MutableList<ShowUo> = mutableListOf()
+    private var items: MutableList<Show> = mutableListOf()
 
     //region adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowListViewHolder =
@@ -26,7 +26,7 @@ class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ShowListViewHolder>
 
     //endregion
 
-    fun addItems(items: List<ShowUo>) {
+    fun addItems(items: List<Show>) {
         val previousSize = this.items.size
         this.items.addAll(items)
         if (this.items.isEmpty()) notifyDataSetChanged() else
@@ -37,7 +37,7 @@ class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ShowListViewHolder>
         override val containerView: View
     ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        fun bind(item: ShowUo, position: Int) =
+        fun bind(item: Show, position: Int) =
             with(itemView) {
                 adapter_show_list_iv.layoutParams.height = Random.nextInt(150, 450)
                 adapter_show_list_iv.load(item.backdropPath)

@@ -2,15 +2,15 @@ package com.vitovalov.kino.domain
 
 import com.vitovalov.kino.data.ShowListDataSource
 import com.vitovalov.kino.data.local.ShowListLocalDataSource
-import com.vitovalov.kino.domain.model.ShowBo
+import com.vitovalov.kino.domain.model.Show
 
 class ShowListRepository(
     private val showListDataSource: ShowListDataSource,
     private val showListLocalDataSource: ShowListLocalDataSource
 ) {
 
-    suspend fun getShowList(page: Int): Result<List<ShowBo>> {
-        var items: List<ShowBo>
+    suspend fun getShowList(page: Int): Result<List<Show>> {
+        var items: List<Show>
 
         try {
             println("trying to load showList from remote ds")
